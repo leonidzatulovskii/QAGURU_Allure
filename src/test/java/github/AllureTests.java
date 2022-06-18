@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -22,10 +23,14 @@ public class AllureTests {
     Steps steps = new Steps();
     public static final String REPOSITORY = "leonidzatulovskii/QAGURU_JUnitAnnotations";
 
+    @BeforeEach
+    void setUp() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
     @Test
     @DisplayName("Проверка наличия вкладки Issues, логгирование с помощью Selenide Listener")
     public void issueTabSelenideLogger() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         Allure.parameter("Вид логгирования", "Selenide Listener");
 
         open("https://github.com");
@@ -40,7 +45,6 @@ public class AllureTests {
     @Test
     @DisplayName("Проверка наличия вкладки Issues, Lambda шаги")
     public void issueTabLambdaSteps() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         Allure.parameter("Вид логгирования", "Lambda шаги");
 
         step("Открываем главную страницу github", () -> {
@@ -63,7 +67,6 @@ public class AllureTests {
     @Test
     @DisplayName("Проверка наличия вкладки Issues, аннотации Steps")
     public void issueTabAnnotationsSteps() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         Allure.parameter("Вид логгирования", "аннотации Steps");
 
         steps.openMainPage();
