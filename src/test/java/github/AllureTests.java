@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -23,8 +23,8 @@ public class AllureTests {
     Steps steps = new Steps();
     public static final String REPOSITORY = "leonidzatulovskii/QAGURU_JUnitAnnotations";
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
